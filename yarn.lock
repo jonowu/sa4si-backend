@@ -587,6 +587,23 @@
     fast-deep-equal "^3.1.3"
     graphql "^15.5.0"
 
+"@keystone-next/cloudinary@^3.0.5":
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/@keystone-next/cloudinary/-/cloudinary-3.0.5.tgz#0e0cce000a57e18cc740d3dadb6e2b2b00418af4"
+  integrity sha512-0O+x0E3mTgZmP7ZI+m2ZC3sAJVsvZZ3uIqfLp3z0AkpywbzgxCvgZfUIeWC052OXzI9J3TsGE/tq8XY0zACVrA==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
+    "@keystone-next/admin-ui" "^12.0.0"
+    "@keystone-next/fields-cloudinary-image-legacy" "^4.0.0"
+    "@keystone-next/file-adapters-legacy" "^8.0.0"
+    "@keystone-next/types" "^15.0.1"
+    "@keystone-ui/button" "^3.0.1"
+    "@keystone-ui/core" "^2.0.2"
+    "@keystone-ui/fields" "^2.0.2"
+    "@keystone-ui/pill" "^2.0.1"
+    "@types/react" "^17.0.3"
+    react "^17.0.2"
+
 "@keystone-next/fields-auto-increment-legacy@^9.0.0":
   version "9.0.0"
   resolved "https://registry.yarnpkg.com/@keystone-next/fields-auto-increment-legacy/-/fields-auto-increment-legacy-9.0.0.tgz#d45a382ee51a104859db0406ebb10e5c4fcca47c"
@@ -595,6 +612,15 @@
     "@babel/runtime" "^7.13.10"
     "@keystone-next/adapter-knex-legacy" "^13.2.3"
     "@keystone-next/adapter-prisma-legacy" "^4.0.1"
+    "@keystone-next/fields-legacy" "^24.0.0"
+
+"@keystone-next/fields-cloudinary-image-legacy@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@keystone-next/fields-cloudinary-image-legacy/-/fields-cloudinary-image-legacy-4.0.0.tgz#ae26a2ae665ab6b050574291a592880a304bbff6"
+  integrity sha512-VbF/NVlLDK8rWpHNwN0tRQcvU6tXBFFS/QZyfm3nf5aMt/QMQjOIp+D05udP5D0foqHgOIDizVtnus0/Mq/LfQ==
+  dependencies:
+    "@keystone-next/adapter-knex-legacy" "^13.2.3"
+    "@keystone-next/adapter-mongoose-legacy" "^11.1.3"
     "@keystone-next/fields-legacy" "^24.0.0"
 
 "@keystone-next/fields-document@^3.2.0":
@@ -702,6 +728,14 @@
     fast-deep-equal "^3.1.3"
     intersection-observer "^0.12.0"
     react "^17.0.2"
+
+"@keystone-next/file-adapters-legacy@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@keystone-next/file-adapters-legacy/-/file-adapters-legacy-8.0.0.tgz#3013b9f23a599aac08e8606757812479629bf474"
+  integrity sha512-CF+r7dEmbX5iyY/olot1tnBFzFGKWZPiEWTe5DbBRWJaQXbYlNoIkqcHS6q+ShggsgW21c+XB0BmBQhXA6Ax2g==
+  dependencies:
+    cloudinary "^1.25.1"
+    mkdirp "^1.0.4"
 
 "@keystone-next/keystone-legacy@^22.0.0":
   version "22.0.0"
@@ -2627,6 +2661,21 @@ clipboard-copy@^4.0.1:
   resolved "https://registry.yarnpkg.com/clipboard-copy/-/clipboard-copy-4.0.1.tgz#326ef9726d4ffe72d9a82a7bbe19379de692017d"
   integrity sha512-wOlqdqziE/NNTUJsfSgXmBMIrYmfd5V0HCGsR8uAKHcg+h9NENWINcfRjtWGU77wDHC8B8ijV4hMTGYbrKovng==
 
+cloudinary-core@^2.10.2:
+  version "2.11.3"
+  resolved "https://registry.yarnpkg.com/cloudinary-core/-/cloudinary-core-2.11.3.tgz#1440f61c6280485094aac87021b7e10f746dc69e"
+  integrity sha512-ZRnpjSgvx+LbSf+aEz5NKzxDB4Z0436aY/0BSDa90kAHiwAyd84VyEi95I74SE80e15Ri9t5S2xtksTXpzk9Xw==
+
+cloudinary@^1.25.1:
+  version "1.25.1"
+  resolved "https://registry.yarnpkg.com/cloudinary/-/cloudinary-1.25.1.tgz#a6bba2529691e73673cd16e4ac96360a573a98e0"
+  integrity sha512-8iyMyOrRhRudJabdNc34GU/Vnr/ltDRq8gmkwQ4NpuJ1lD5Qw88DJGBNeODZnGSNXIPTLln708gsADVKe0AQMw==
+  dependencies:
+    cloudinary-core "^2.10.2"
+    core-js "3.6.5"
+    lodash "^4.17.11"
+    q "^1.5.1"
+
 collection-visit@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/collection-visit/-/collection-visit-1.0.0.tgz#4bc0373c164bc3291b4d368c829cf1a80a59dca0"
@@ -2774,6 +2823,11 @@ copy-descriptor@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
   integrity sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=
+
+core-js@3.6.5:
+  version "3.6.5"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.5.tgz#7395dc273af37fb2e50e9bd3d9fe841285231d1a"
+  integrity sha512-vZVEEwZoIsI+vPEuoF9Iqf5H7/M3eeQqWlQnYa8FSKKePuYTf5MWnxb5SDAzCa60b3JBRS5g9b+Dq7b1y/RCrA==
 
 core-js@^3.0.1:
   version "3.10.0"
@@ -4747,7 +4801,7 @@ lodash.union@^4.6.0:
   resolved "https://registry.yarnpkg.com/lodash.union/-/lodash.union-4.6.0.tgz#48bb5088409f16f1821666641c44dd1aaae3cd88"
   integrity sha1-SLtQiECfFvGCFmZkHETdGqrjzYg=
 
-lodash@^4.17.13, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.21, lodash@^4.17.4:
+lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.21, lodash@^4.17.4:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -6014,6 +6068,11 @@ punycode@^2.1.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
+
+q@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
+  integrity sha1-fjL3W0E4EpHQRhHxvxQQmsAGUdc=
 
 qs@6.7.0:
   version "6.7.0"
