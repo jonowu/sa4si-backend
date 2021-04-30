@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "keystone-next dev",
     "start": "keystone-next start",
-    "build": "keystone-next build && keystone-next prisma migrate deploy"
+    "build": "keystone-next build && keystone-next deploy"
   },
   "dependencies": {
     "@keystone-next/auth": "^19.0.0",
