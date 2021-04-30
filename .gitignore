@@ -1,4 +1,5 @@
 node_modules
-.keystone
+.keystone/admin/
+.keystone/prisma/generated-client/
 *.log
 .env
