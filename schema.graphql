@@ -14,7 +14,8 @@ Mirrors the formatting options [Cloudinary provides](https://cloudinary.com/docu
 All options are strings as they ultimately end up in a URL.
 """
 input CloudinaryImageFormat {
-  """ Rewrites the filename to be this pretty string. Do not include `/` or `.` 
+  """
+   Rewrites the filename to be this pretty string. Do not include `/` or `.`
   """
   prettyName: String
   width: String
@@ -65,7 +66,9 @@ input CategoryRelateToManyInput {
   disconnectAll: Boolean
 }
 
-""" A keystone list """
+"""
+ A keystone list
+"""
 type Action {
   id: ID!
   title: String
@@ -73,10 +76,38 @@ type Action {
   publishDate: String
   image: CloudinaryImage_File
   content: Action_content_DocumentField
-  relatedSdgs(where: SdgWhereInput, search: String, sortBy: [SortSdgsBy!], orderBy: String, first: Int, skip: Int): [Sdg!]!
-  _relatedSdgsMeta(where: SdgWhereInput, search: String, sortBy: [SortSdgsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
-  categories(where: CategoryWhereInput, search: String, sortBy: [SortCategoriesBy!], orderBy: String, first: Int, skip: Int): [Category!]!
-  _categoriesMeta(where: CategoryWhereInput, search: String, sortBy: [SortCategoriesBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  relatedSdgs(
+    where: SdgWhereInput
+    search: String
+    sortBy: [SortSdgsBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): [Sdg!]!
+  _relatedSdgsMeta(
+    where: SdgWhereInput
+    search: String
+    sortBy: [SortSdgsBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): _QueryMeta
+  categories(
+    where: CategoryWhereInput
+    search: String
+    sortBy: [SortCategoriesBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): [Category!]!
+  _categoriesMeta(
+    where: CategoryWhereInput
+    search: String
+    sortBy: [SortCategoriesBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): _QueryMeta
 }
 
 input ActionWhereInput {
@@ -125,22 +156,34 @@ input ActionWhereInput {
   image_in: [String]
   image_not_in: [String]
 
-  """ condition must be true for all nodes """
+  """
+   condition must be true for all nodes
+  """
   relatedSdgs_every: SdgWhereInput
 
-  """ condition must be true for at least 1 node """
+  """
+   condition must be true for at least 1 node
+  """
   relatedSdgs_some: SdgWhereInput
 
-  """ condition must be false for all nodes """
+  """
+   condition must be false for all nodes
+  """
   relatedSdgs_none: SdgWhereInput
 
-  """ condition must be true for all nodes """
+  """
+   condition must be true for all nodes
+  """
   categories_every: CategoryWhereInput
 
-  """ condition must be true for at least 1 node """
+  """
+   condition must be true for at least 1 node
+  """
   categories_some: CategoryWhereInput
 
-  """ condition must be false for all nodes """
+  """
+   condition must be false for all nodes
+  """
   categories_none: CategoryWhereInput
 }
 
@@ -199,12 +242,28 @@ input ActionRelateToManyInput {
   disconnectAll: Boolean
 }
 
-""" A keystone list """
+"""
+ A keystone list
+"""
 type Category {
   id: ID!
   title: String
-  actions(where: ActionWhereInput, search: String, sortBy: [SortActionsBy!], orderBy: String, first: Int, skip: Int): [Action!]!
-  _actionsMeta(where: ActionWhereInput, search: String, sortBy: [SortActionsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  actions(
+    where: ActionWhereInput
+    search: String
+    sortBy: [SortActionsBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): [Action!]!
+  _actionsMeta(
+    where: ActionWhereInput
+    search: String
+    sortBy: [SortActionsBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): _QueryMeta
 }
 
 input CategoryWhereInput {
@@ -237,13 +296,19 @@ input CategoryWhereInput {
   title_in: [String]
   title_not_in: [String]
 
-  """ condition must be true for all nodes """
+  """
+   condition must be true for all nodes
+  """
   actions_every: ActionWhereInput
 
-  """ condition must be true for at least 1 node """
+  """
+   condition must be true for at least 1 node
+  """
   actions_some: ActionWhereInput
 
-  """ condition must be false for all nodes """
+  """
+   condition must be false for all nodes
+  """
   actions_none: ActionWhereInput
 }
 
@@ -300,14 +365,30 @@ input UserRelateToManyInput {
   disconnectAll: Boolean
 }
 
-""" A keystone list """
+"""
+ A keystone list
+"""
 type Completion {
   id: ID!
   action: Action
   user: User
   completionDate: String
-  kudos(where: UserWhereInput, search: String, sortBy: [SortUsersBy!], orderBy: String, first: Int, skip: Int): [User!]!
-  _kudosMeta(where: UserWhereInput, search: String, sortBy: [SortUsersBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  kudos(
+    where: UserWhereInput
+    search: String
+    sortBy: [SortUsersBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): [User!]!
+  _kudosMeta(
+    where: UserWhereInput
+    search: String
+    sortBy: [SortUsersBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): _QueryMeta
 }
 
 input CompletionWhereInput {
@@ -334,13 +415,19 @@ input CompletionWhereInput {
   completionDate_in: [String]
   completionDate_not_in: [String]
 
-  """ condition must be true for all nodes """
+  """
+   condition must be true for all nodes
+  """
   kudos_every: UserWhereInput
 
-  """ condition must be true for at least 1 node """
+  """
+   condition must be true for at least 1 node
+  """
   kudos_some: UserWhereInput
 
-  """ condition must be false for all nodes """
+  """
+   condition must be false for all nodes
+  """
   kudos_none: UserWhereInput
 }
 
@@ -384,7 +471,9 @@ input CompletionsCreateInput {
   data: CompletionCreateInput
 }
 
-""" A keystone list """
+"""
+ A keystone list
+"""
 type Idea {
   id: ID!
   title: String
@@ -479,15 +568,31 @@ input IdeasCreateInput {
   data: IdeaCreateInput
 }
 
-""" A keystone list """
+"""
+ A keystone list
+"""
 type Role {
   id: ID!
   name: String
   canEditOtherUsers: Boolean
   canManageUsers: Boolean
   canManageRoles: Boolean
-  assignedTo(where: UserWhereInput, search: String, sortBy: [SortUsersBy!], orderBy: String, first: Int, skip: Int): [User!]!
-  _assignedToMeta(where: UserWhereInput, search: String, sortBy: [SortUsersBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  assignedTo(
+    where: UserWhereInput
+    search: String
+    sortBy: [SortUsersBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): [User!]!
+  _assignedToMeta(
+    where: UserWhereInput
+    search: String
+    sortBy: [SortUsersBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): _QueryMeta
 }
 
 input RoleWhereInput {
@@ -526,13 +631,19 @@ input RoleWhereInput {
   canManageRoles: Boolean
   canManageRoles_not: Boolean
 
-  """ condition must be true for all nodes """
+  """
+   condition must be true for all nodes
+  """
   assignedTo_every: UserWhereInput
 
-  """ condition must be true for at least 1 node """
+  """
+   condition must be true for at least 1 node
+  """
   assignedTo_some: UserWhereInput
 
-  """ condition must be false for all nodes """
+  """
+   condition must be false for all nodes
+  """
   assignedTo_none: UserWhereInput
 }
 
@@ -584,15 +695,31 @@ type Sdg_content_DocumentField {
   document(hydrateRelationships: Boolean! = false): JSON!
 }
 
-""" A keystone list """
+"""
+ A keystone list
+"""
 type Sdg {
   id: ID!
   sdgNo: Int
   title: String
   description: String
   content: Sdg_content_DocumentField
-  actions(where: ActionWhereInput, search: String, sortBy: [SortActionsBy!], orderBy: String, first: Int, skip: Int): [Action!]!
-  _actionsMeta(where: ActionWhereInput, search: String, sortBy: [SortActionsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  actions(
+    where: ActionWhereInput
+    search: String
+    sortBy: [SortActionsBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): [Action!]!
+  _actionsMeta(
+    where: ActionWhereInput
+    search: String
+    sortBy: [SortActionsBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): _QueryMeta
 }
 
 input SdgWhereInput {
@@ -651,13 +778,19 @@ input SdgWhereInput {
   description_in: [String]
   description_not_in: [String]
 
-  """ condition must be true for all nodes """
+  """
+   condition must be true for all nodes
+  """
   actions_every: ActionWhereInput
 
-  """ condition must be true for at least 1 node """
+  """
+   condition must be true for at least 1 node
+  """
   actions_some: ActionWhereInput
 
-  """ condition must be false for all nodes """
+  """
+   condition must be false for all nodes
+  """
   actions_none: ActionWhereInput
 }
 
@@ -717,7 +850,9 @@ input RoleRelateToOneInput {
   disconnectAll: Boolean
 }
 
-""" A keystone list """
+"""
+ A keystone list
+"""
 type User {
   id: ID!
   name: String
@@ -727,10 +862,38 @@ type User {
   biography: String
   areasOfInterest: String
   funFacts: String
-  favouriteSdgs(where: SdgWhereInput, search: String, sortBy: [SortSdgsBy!], orderBy: String, first: Int, skip: Int): [Sdg!]!
-  _favouriteSdgsMeta(where: SdgWhereInput, search: String, sortBy: [SortSdgsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
-  completions(where: CompletionWhereInput, search: String, sortBy: [SortCompletionsBy!], orderBy: String, first: Int, skip: Int): [Completion!]!
-  _completionsMeta(where: CompletionWhereInput, search: String, sortBy: [SortCompletionsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  favouriteSdgs(
+    where: SdgWhereInput
+    search: String
+    sortBy: [SortSdgsBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): [Sdg!]!
+  _favouriteSdgsMeta(
+    where: SdgWhereInput
+    search: String
+    sortBy: [SortSdgsBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): _QueryMeta
+  completions(
+    where: CompletionWhereInput
+    search: String
+    sortBy: [SortCompletionsBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): [Completion!]!
+  _completionsMeta(
+    where: CompletionWhereInput
+    search: String
+    sortBy: [SortCompletionsBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): _QueryMeta
   role: Role
 }
 
@@ -841,22 +1004,34 @@ input UserWhereInput {
   funFacts_in: [String]
   funFacts_not_in: [String]
 
-  """ condition must be true for all nodes """
+  """
+   condition must be true for all nodes
+  """
   favouriteSdgs_every: SdgWhereInput
 
-  """ condition must be true for at least 1 node """
+  """
+   condition must be true for at least 1 node
+  """
   favouriteSdgs_some: SdgWhereInput
 
-  """ condition must be false for all nodes """
+  """
+   condition must be false for all nodes
+  """
   favouriteSdgs_none: SdgWhereInput
 
-  """ condition must be true for all nodes """
+  """
+   condition must be true for all nodes
+  """
   completions_every: CompletionWhereInput
 
-  """ condition must be true for at least 1 node """
+  """
+   condition must be true for at least 1 node
+  """
   completions_some: CompletionWhereInput
 
-  """ condition must be false for all nodes """
+  """
+   condition must be false for all nodes
+  """
   completions_none: CompletionWhereInput
   role: RoleWhereInput
   role_is_null: Boolean
@@ -925,320 +1100,245 @@ input UsersCreateInput {
 """
 The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
 """
-scalar JSON @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
-
-type _ListAccess {
-  """
-  Access Control settings for the currently logged in (or anonymous)
-  user when performing 'create' operations.
-  NOTE: 'create' can only return a Boolean.
-  It is not possible to specify a declarative Where clause for this
-  operation
-  """
-  create: Boolean
-
-  """
-  Access Control settings for the currently logged in (or anonymous)
-  user when performing 'read' operations.
-  """
-  read: JSON
-
-  """
-  Access Control settings for the currently logged in (or anonymous)
-  user when performing 'update' operations.
-  """
-  update: JSON
-
-  """
-  Access Control settings for the currently logged in (or anonymous)
-  user when performing 'delete' operations.
-  """
-  delete: JSON
-
-  """
-  Access Control settings for the currently logged in (or anonymous)
-  user when performing 'auth' operations.
-  """
-  auth: JSON
-}
-
-type _ListQueries {
-  """Single-item query name"""
-  item: String
-
-  """All-items query name"""
-  list: String
-
-  """List metadata query name"""
-  meta: String
-}
-
-type _ListMutations {
-  """Create mutation name"""
-  create: String
-
-  """Create many mutation name"""
-  createMany: String
-
-  """Update mutation name"""
-  update: String
-
-  """Update many mutation name"""
-  updateMany: String
-
-  """Delete mutation name"""
-  delete: String
-
-  """Delete many mutation name"""
-  deleteMany: String
-}
-
-type _ListInputTypes {
-  """Input type for matching multiple items"""
-  whereInput: String
-
-  """Input type for matching a unique item"""
-  whereUniqueInput: String
-
-  """Create mutation input type name"""
-  createInput: String
-
-  """Create many mutation input type name"""
-  createManyInput: String
-
-  """Update mutation name input"""
-  updateInput: String
-
-  """Update many mutation name input"""
-  updateManyInput: String
-}
-
-type _ListSchemaFields {
-  """The path of the field in its list"""
-  path: String
-
-  """The name of the field in its list"""
-  name: String @deprecated(reason: "Use `path` instead")
-
-  """The field type (ie, Checkbox, Text, etc)"""
-  type: String
-}
-
-type _ListSchemaRelatedFields {
-  """The typename as used in GraphQL queries"""
-  type: String
-
-  """A list of GraphQL field names"""
-  fields: [String]
-}
-
-type _ListSchema {
-  """The typename as used in GraphQL queries"""
-  type: String
-
-  """
-  Top level GraphQL query names which either return this type, or
-  provide aggregate information about this type
-  """
-  queries: _ListQueries
-
-  """Top-level GraphQL mutation names"""
-  mutations: _ListMutations
-
-  """Top-level GraphQL input types"""
-  inputTypes: _ListInputTypes
-
-  """Information about fields defined on this list"""
-  fields(where: _ListSchemaFieldsInput): [_ListSchemaFields]
-
-  """
-  Information about fields on other types which return this type, or
-  provide aggregate information about this type
-  """
-  relatedFields: [_ListSchemaRelatedFields]
-}
-
-type _ListMeta {
-  """The Keystone list key"""
-  key: String
-
-  """The Keystone List name"""
-  name: String @deprecated(reason: "Use `key` instead")
-
-  """The list's user-facing description"""
-  description: String
-
-  """The list's display name in the Admin UI"""
-  label: String
-
-  """The list's singular display name"""
-  singular: String
-
-  """The list's plural display name"""
-  plural: String
-
-  """The list's data path"""
-  path: String
-
-  """Access control configuration for the currently authenticated request"""
-  access: _ListAccess
-
-  """Information on the generated GraphQL schema"""
-  schema: _ListSchema
-}
+scalar JSON
+  @specifiedBy(
+    url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf"
+  )
 
 type _QueryMeta {
   count: Int
 }
 
-input _ksListsMetaInput {
-  key: String
-
-  """Whether this is an auxiliary helper list"""
-  auxiliary: Boolean
-}
-
-input _ListSchemaFieldsInput {
-  type: String
-}
-
 type Mutation {
-  """ Create a single Action item. """
+  """
+   Create a single Action item.
+  """
   createAction(data: ActionCreateInput): Action
 
-  """ Create multiple Action items. """
+  """
+   Create multiple Action items.
+  """
   createActions(data: [ActionsCreateInput]): [Action]
 
-  """ Update a single Action item by ID. """
+  """
+   Update a single Action item by ID.
+  """
   updateAction(id: ID!, data: ActionUpdateInput): Action
 
-  """ Update multiple Action items by ID. """
+  """
+   Update multiple Action items by ID.
+  """
   updateActions(data: [ActionsUpdateInput]): [Action]
 
-  """ Delete a single Action item by ID. """
+  """
+   Delete a single Action item by ID.
+  """
   deleteAction(id: ID!): Action
 
-  """ Delete multiple Action items by ID. """
+  """
+   Delete multiple Action items by ID.
+  """
   deleteActions(ids: [ID!]): [Action]
 
-  """ Create a single Category item. """
+  """
+   Create a single Category item.
+  """
   createCategory(data: CategoryCreateInput): Category
 
-  """ Create multiple Category items. """
+  """
+   Create multiple Category items.
+  """
   createCategories(data: [CategoriesCreateInput]): [Category]
 
-  """ Update a single Category item by ID. """
+  """
+   Update a single Category item by ID.
+  """
   updateCategory(id: ID!, data: CategoryUpdateInput): Category
 
-  """ Update multiple Category items by ID. """
+  """
+   Update multiple Category items by ID.
+  """
   updateCategories(data: [CategoriesUpdateInput]): [Category]
 
-  """ Delete a single Category item by ID. """
+  """
+   Delete a single Category item by ID.
+  """
   deleteCategory(id: ID!): Category
 
-  """ Delete multiple Category items by ID. """
+  """
+   Delete multiple Category items by ID.
+  """
   deleteCategories(ids: [ID!]): [Category]
 
-  """ Create a single Completion item. """
+  """
+   Create a single Completion item.
+  """
   createCompletion(data: CompletionCreateInput): Completion
 
-  """ Create multiple Completion items. """
+  """
+   Create multiple Completion items.
+  """
   createCompletions(data: [CompletionsCreateInput]): [Completion]
 
-  """ Update a single Completion item by ID. """
+  """
+   Update a single Completion item by ID.
+  """
   updateCompletion(id: ID!, data: CompletionUpdateInput): Completion
 
-  """ Update multiple Completion items by ID. """
+  """
+   Update multiple Completion items by ID.
+  """
   updateCompletions(data: [CompletionsUpdateInput]): [Completion]
 
-  """ Delete a single Completion item by ID. """
+  """
+   Delete a single Completion item by ID.
+  """
   deleteCompletion(id: ID!): Completion
 
-  """ Delete multiple Completion items by ID. """
+  """
+   Delete multiple Completion items by ID.
+  """
   deleteCompletions(ids: [ID!]): [Completion]
 
-  """ Create a single Idea item. """
+  """
+   Create a single Idea item.
+  """
   createIdea(data: IdeaCreateInput): Idea
 
-  """ Create multiple Idea items. """
+  """
+   Create multiple Idea items.
+  """
   createIdeas(data: [IdeasCreateInput]): [Idea]
 
-  """ Update a single Idea item by ID. """
+  """
+   Update a single Idea item by ID.
+  """
   updateIdea(id: ID!, data: IdeaUpdateInput): Idea
 
-  """ Update multiple Idea items by ID. """
+  """
+   Update multiple Idea items by ID.
+  """
   updateIdeas(data: [IdeasUpdateInput]): [Idea]
 
-  """ Delete a single Idea item by ID. """
+  """
+   Delete a single Idea item by ID.
+  """
   deleteIdea(id: ID!): Idea
 
-  """ Delete multiple Idea items by ID. """
+  """
+   Delete multiple Idea items by ID.
+  """
   deleteIdeas(ids: [ID!]): [Idea]
 
-  """ Create a single Role item. """
+  """
+   Create a single Role item.
+  """
   createRole(data: RoleCreateInput): Role
 
-  """ Create multiple Role items. """
+  """
+   Create multiple Role items.
+  """
   createRoles(data: [RolesCreateInput]): [Role]
 
-  """ Update a single Role item by ID. """
+  """
+   Update a single Role item by ID.
+  """
   updateRole(id: ID!, data: RoleUpdateInput): Role
 
-  """ Update multiple Role items by ID. """
+  """
+   Update multiple Role items by ID.
+  """
   updateRoles(data: [RolesUpdateInput]): [Role]
 
-  """ Delete a single Role item by ID. """
+  """
+   Delete a single Role item by ID.
+  """
   deleteRole(id: ID!): Role
 
-  """ Delete multiple Role items by ID. """
+  """
+   Delete multiple Role items by ID.
+  """
   deleteRoles(ids: [ID!]): [Role]
 
-  """ Create a single Sdg item. """
+  """
+   Create a single Sdg item.
+  """
   createSdg(data: SdgCreateInput): Sdg
 
-  """ Create multiple Sdg items. """
+  """
+   Create multiple Sdg items.
+  """
   createSdgs(data: [SdgsCreateInput]): [Sdg]
 
-  """ Update a single Sdg item by ID. """
+  """
+   Update a single Sdg item by ID.
+  """
   updateSdg(id: ID!, data: SdgUpdateInput): Sdg
 
-  """ Update multiple Sdg items by ID. """
+  """
+   Update multiple Sdg items by ID.
+  """
   updateSdgs(data: [SdgsUpdateInput]): [Sdg]
 
-  """ Delete a single Sdg item by ID. """
+  """
+   Delete a single Sdg item by ID.
+  """
   deleteSdg(id: ID!): Sdg
 
-  """ Delete multiple Sdg items by ID. """
+  """
+   Delete multiple Sdg items by ID.
+  """
   deleteSdgs(ids: [ID!]): [Sdg]
 
-  """ Create a single User item. """
+  """
+   Create a single User item.
+  """
   createUser(data: UserCreateInput): User
 
-  """ Create multiple User items. """
+  """
+   Create multiple User items.
+  """
   createUsers(data: [UsersCreateInput]): [User]
 
-  """ Update a single User item by ID. """
+  """
+   Update a single User item by ID.
+  """
   updateUser(id: ID!, data: UserUpdateInput): User
 
-  """ Update multiple User items by ID. """
+  """
+   Update multiple User items by ID.
+  """
   updateUsers(data: [UsersUpdateInput]): [User]
 
-  """ Delete a single User item by ID. """
+  """
+   Delete a single User item by ID.
+  """
   deleteUser(id: ID!): User
 
-  """ Delete multiple User items by ID. """
+  """
+   Delete multiple User items by ID.
+  """
   deleteUsers(ids: [ID!]): [User]
-  authenticateUserWithPassword(email: String!, password: String!): UserAuthenticationWithPasswordResult!
-  createInitialUser(data: CreateInitialUserInput!): UserAuthenticationWithPasswordSuccess!
+  authenticateUserWithPassword(
+    email: String!
+    password: String!
+  ): UserAuthenticationWithPasswordResult!
+  createInitialUser(
+    data: CreateInitialUserInput!
+  ): UserAuthenticationWithPasswordSuccess!
   endSession: Boolean!
 }
 
-"""The `Upload` scalar type represents a file upload."""
+"""
+The `Upload` scalar type represents a file upload.
+"""
 scalar Upload
 
 union AuthenticatedItem = User
 
-union UserAuthenticationWithPasswordResult = UserAuthenticationWithPasswordSuccess | UserAuthenticationWithPasswordFailure
+union UserAuthenticationWithPasswordResult =
+    UserAuthenticationWithPasswordSuccess
+  | UserAuthenticationWithPasswordFailure
 
 type UserAuthenticationWithPasswordSuccess {
   sessionToken: String!
@@ -1265,95 +1365,208 @@ input CreateInitialUserInput {
 }
 
 type Query {
-  """ Search for all Action items which match the where clause. """
-  allActions(where: ActionWhereInput, search: String, sortBy: [SortActionsBy!], orderBy: String, first: Int, skip: Int): [Action]
+  """
+   Search for all Action items which match the where clause.
+  """
+  allActions(
+    where: ActionWhereInput
+    search: String
+    sortBy: [SortActionsBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): [Action]
 
-  """ Search for the Action item with the matching ID. """
+  """
+   Search for the Action item with the matching ID.
+  """
   Action(where: ActionWhereUniqueInput!): Action
 
-  """ Perform a meta-query on all Action items which match the where clause. 
   """
-  _allActionsMeta(where: ActionWhereInput, search: String, sortBy: [SortActionsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+   Perform a meta-query on all Action items which match the where clause.
+  """
+  _allActionsMeta(
+    where: ActionWhereInput
+    search: String
+    sortBy: [SortActionsBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): _QueryMeta
 
-  """ Retrieve the meta-data for the Action list. """
-  _ActionsMeta: _ListMeta
+  """
+   Search for all Category items which match the where clause.
+  """
+  allCategories(
+    where: CategoryWhereInput
+    search: String
+    sortBy: [SortCategoriesBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): [Category]
 
-  """ Search for all Category items which match the where clause. """
-  allCategories(where: CategoryWhereInput, search: String, sortBy: [SortCategoriesBy!], orderBy: String, first: Int, skip: Int): [Category]
-
-  """ Search for the Category item with the matching ID. """
+  """
+   Search for the Category item with the matching ID.
+  """
   Category(where: CategoryWhereUniqueInput!): Category
 
-  """ Perform a meta-query on all Category items which match the where clause. 
   """
-  _allCategoriesMeta(where: CategoryWhereInput, search: String, sortBy: [SortCategoriesBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+   Perform a meta-query on all Category items which match the where clause.
+  """
+  _allCategoriesMeta(
+    where: CategoryWhereInput
+    search: String
+    sortBy: [SortCategoriesBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): _QueryMeta
 
-  """ Retrieve the meta-data for the Category list. """
-  _CategoriesMeta: _ListMeta
+  """
+   Search for all Completion items which match the where clause.
+  """
+  allCompletions(
+    where: CompletionWhereInput
+    search: String
+    sortBy: [SortCompletionsBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): [Completion]
 
-  """ Search for all Completion items which match the where clause. """
-  allCompletions(where: CompletionWhereInput, search: String, sortBy: [SortCompletionsBy!], orderBy: String, first: Int, skip: Int): [Completion]
-
-  """ Search for the Completion item with the matching ID. """
+  """
+   Search for the Completion item with the matching ID.
+  """
   Completion(where: CompletionWhereUniqueInput!): Completion
 
-  """ Perform a meta-query on all Completion items which match the where clause. 
   """
-  _allCompletionsMeta(where: CompletionWhereInput, search: String, sortBy: [SortCompletionsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+   Perform a meta-query on all Completion items which match the where clause.
+  """
+  _allCompletionsMeta(
+    where: CompletionWhereInput
+    search: String
+    sortBy: [SortCompletionsBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): _QueryMeta
 
-  """ Retrieve the meta-data for the Completion list. """
-  _CompletionsMeta: _ListMeta
+  """
+   Search for all Idea items which match the where clause.
+  """
+  allIdeas(
+    where: IdeaWhereInput
+    search: String
+    sortBy: [SortIdeasBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): [Idea]
 
-  """ Search for all Idea items which match the where clause. """
-  allIdeas(where: IdeaWhereInput, search: String, sortBy: [SortIdeasBy!], orderBy: String, first: Int, skip: Int): [Idea]
-
-  """ Search for the Idea item with the matching ID. """
+  """
+   Search for the Idea item with the matching ID.
+  """
   Idea(where: IdeaWhereUniqueInput!): Idea
 
-  """ Perform a meta-query on all Idea items which match the where clause. """
-  _allIdeasMeta(where: IdeaWhereInput, search: String, sortBy: [SortIdeasBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  """
+   Perform a meta-query on all Idea items which match the where clause.
+  """
+  _allIdeasMeta(
+    where: IdeaWhereInput
+    search: String
+    sortBy: [SortIdeasBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): _QueryMeta
 
-  """ Retrieve the meta-data for the Idea list. """
-  _IdeasMeta: _ListMeta
+  """
+   Search for all Role items which match the where clause.
+  """
+  allRoles(
+    where: RoleWhereInput
+    search: String
+    sortBy: [SortRolesBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): [Role]
 
-  """ Search for all Role items which match the where clause. """
-  allRoles(where: RoleWhereInput, search: String, sortBy: [SortRolesBy!], orderBy: String, first: Int, skip: Int): [Role]
-
-  """ Search for the Role item with the matching ID. """
+  """
+   Search for the Role item with the matching ID.
+  """
   Role(where: RoleWhereUniqueInput!): Role
 
-  """ Perform a meta-query on all Role items which match the where clause. """
-  _allRolesMeta(where: RoleWhereInput, search: String, sortBy: [SortRolesBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  """
+   Perform a meta-query on all Role items which match the where clause.
+  """
+  _allRolesMeta(
+    where: RoleWhereInput
+    search: String
+    sortBy: [SortRolesBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): _QueryMeta
 
-  """ Retrieve the meta-data for the Role list. """
-  _RolesMeta: _ListMeta
+  """
+   Search for all Sdg items which match the where clause.
+  """
+  allSdgs(
+    where: SdgWhereInput
+    search: String
+    sortBy: [SortSdgsBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): [Sdg]
 
-  """ Search for all Sdg items which match the where clause. """
-  allSdgs(where: SdgWhereInput, search: String, sortBy: [SortSdgsBy!], orderBy: String, first: Int, skip: Int): [Sdg]
-
-  """ Search for the Sdg item with the matching ID. """
+  """
+   Search for the Sdg item with the matching ID.
+  """
   Sdg(where: SdgWhereUniqueInput!): Sdg
 
-  """ Perform a meta-query on all Sdg items which match the where clause. """
-  _allSdgsMeta(where: SdgWhereInput, search: String, sortBy: [SortSdgsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  """
+   Perform a meta-query on all Sdg items which match the where clause.
+  """
+  _allSdgsMeta(
+    where: SdgWhereInput
+    search: String
+    sortBy: [SortSdgsBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): _QueryMeta
 
-  """ Retrieve the meta-data for the Sdg list. """
-  _SdgsMeta: _ListMeta
+  """
+   Search for all User items which match the where clause.
+  """
+  allUsers(
+    where: UserWhereInput
+    search: String
+    sortBy: [SortUsersBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): [User]
 
-  """ Search for all User items which match the where clause. """
-  allUsers(where: UserWhereInput, search: String, sortBy: [SortUsersBy!], orderBy: String, first: Int, skip: Int): [User]
-
-  """ Search for the User item with the matching ID. """
+  """
+   Search for the User item with the matching ID.
+  """
   User(where: UserWhereUniqueInput!): User
 
-  """ Perform a meta-query on all User items which match the where clause. """
-  _allUsersMeta(where: UserWhereInput, search: String, sortBy: [SortUsersBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
-
-  """ Retrieve the meta-data for the User list. """
-  _UsersMeta: _ListMeta
-
-  """ Retrieve the meta-data for all lists. """
-  _ksListsMeta(where: _ksListsMetaInput): [_ListMeta]
+  """
+   Perform a meta-query on all User items which match the where clause.
+  """
+  _allUsersMeta(
+    where: UserWhereInput
+    search: String
+    sortBy: [SortUsersBy!]
+    orderBy: String
+    first: Int
+    skip: Int
+  ): _QueryMeta
   authenticatedItem: AuthenticatedItem
   keystone: KeystoneMeta!
 }
