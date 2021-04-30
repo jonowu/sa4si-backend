@@ -42,9 +42,5 @@ export const Action = list({
     }),
     relatedSdgs: relationship({ ref: 'Sdg.actions', many: true }),
     categories: relationship({ ref: 'Category.actions', many: true }),
-    completions: relationship({
-      ref: 'Completion.action',
-      many: true,
-    }),
   },
 });

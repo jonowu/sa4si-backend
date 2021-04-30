@@ -11,6 +11,7 @@ import { Completion } from './schemas/Completion';
 import { Idea } from './schemas/Idea';
 import { Sdg } from './schemas/Sdg';
 import { User } from './schemas/User';
+import { Role } from './schemas/Role';
 
 let sessionSecret = process.env.SESSION_SECRET;
 
@@ -32,6 +33,20 @@ const auth = createAuth({
   secretField: 'password',
   initFirstItem: {
     fields: ['name', 'email', 'password'],
+    itemData: {
+      /*
+        This creates a related role with full permissions, so that when the first user signs in
+        they have complete access to the system (without this, you couldn't do anything)
+      */
+      role: {
+        create: {
+          name: 'Super Admin',
+          canEditOtherUsers: true,
+          canManageUsers: true,
+          canManageRoles: true,
+        },
+      },
+    },
   },
 });
 
@@ -44,7 +59,8 @@ export default auth.withAuth(
         'postgres://jonathanwu@localhost/sa4si-backend',
     },
     ui: {
-      isAccessAllowed: (context) => !!context.session?.data,
+      // Restrict access to the Admin UI to users with the isAdmin permission
+      // isAccessAllowed: (context) => (isAdmin(context) ? true : false),
     },
     lists: createSchema({
       // Schema items go in here
@@ -52,6 +68,7 @@ export default auth.withAuth(
       Category,
       Completion,
       Idea,
+      Role,
       Sdg,
       User,
     }),
@@ -60,7 +77,15 @@ export default auth.withAuth(
         maxAge: sessionMaxAge,
         secret: sessionSecret,
       }),
-      { User: 'name' }
+      {
+        User: `name role {
+          id
+          name
+          canEditOtherUsers
+          canManageUsers
+          canManageRoles
+        }`,
+      }
     ),
   })
 );
