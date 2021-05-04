@@ -52,6 +52,13 @@ const auth = createAuth({
 
 export default auth.withAuth(
   config({
+    server: {
+      cors: {
+        origin: ['http://localhost:19006', 'https://sa4si-web.vercel.app'],
+        credentials: true,
+      },
+      port: 4000,
+    },
     db: {
       adapter: 'prisma_postgresql',
       url:
