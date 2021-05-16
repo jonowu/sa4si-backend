@@ -49,7 +49,7 @@ export async function sendPasswordResetEmail(
     from: 'sa4si-team@swinburne.edu.au',
     subject: 'Your password reset token!',
     html: makeANiceEmail(`Your Password Reset Token is here!
-      <a href="${process.env.FRONTEND_URL}/reset?token=${resetToken}">Click Here to reset</a>
+      <a href="${process.env.FRONTEND_URL}/?token=${resetToken}">Click here to reset</a>
     `),
   });
   if (process.env.MAIL_USER?.includes('ethereal.email')) {
