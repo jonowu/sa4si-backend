@@ -57,6 +57,9 @@ const auth = createAuth({
   },
 });
 
+const envPort = parseInt(process.env.PORT || '');
+const port = Number.isInteger(envPort) ? envPort : 4000;
+
 export default auth.withAuth(
   config({
     server: {
@@ -69,7 +72,7 @@ export default auth.withAuth(
         ],
         credentials: true,
       },
-      port: 4000,
+      port: port,
     },
     db: {
       adapter: 'prisma_postgresql',
