@@ -12,6 +12,7 @@ import { Idea } from './schemas/Idea';
 import { Sdg } from './schemas/Sdg';
 import { User } from './schemas/User';
 import { Role } from './schemas/Role';
+import { sendPasswordResetEmail } from './lib/mail';
 
 let sessionSecret = process.env.SESSION_SECRET;
 
@@ -31,6 +32,12 @@ const auth = createAuth({
   listKey: 'User',
   identityField: 'email',
   secretField: 'password',
+  passwordResetLink: {
+    async sendToken(args) {
+      // send the email
+      await sendPasswordResetEmail(args.token, args.identity);
+    },
+  },
   initFirstItem: {
     fields: ['name', 'email', 'password'],
     itemData: {
@@ -54,7 +61,12 @@ export default auth.withAuth(
   config({
     server: {
       cors: {
-        origin: ['http://localhost:19006', 'https://sa4si-web.vercel.app'],
+        origin: [
+          'http://localhost:3000',
+          'http://localhost:19006',
+          'https://sa4si-web.vercel.app',
+          'https://sa4si-app-reset-password.vercel.app',
+        ],
         credentials: true,
       },
       port: 4000,

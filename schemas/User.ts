@@ -13,7 +13,8 @@ const cloudinary = {
 
 export const User = list({
   access: {
-    create: permissions.canManageUsers,
+    create: true,
+    read: true,
     update: rules.canUpdateUsers,
     delete: permissions.canManageUsers,
   },

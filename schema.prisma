@@ -69,20 +69,23 @@ model Sdg {
 }
 
 model User {
-  id                    Int          @id @default(autoincrement())
-  name                  String?
-  email                 String?      @unique
-  password              String?
-  profilePicture        Json?
-  biography             String?
-  areasOfInterest       String?
-  funFacts              String?
-  favouriteSdgs         Sdg[]        @relation("User_favouriteSdgs_many", references: [id])
-  completions           Completion[] @relation("Completionuser")
-  role                  Role?        @relation("Userrole", fields: [roleId], references: [id])
-  roleId                Int?         @map("role")
-  from_Completion_kudos Completion[] @relation("Completion_kudos_many", references: [id])
-  from_Idea_user        Idea[]       @relation("Ideauser")
+  id                      Int          @id @default(autoincrement())
+  name                    String?
+  email                   String?      @unique
+  password                String?
+  profilePicture          Json?
+  biography               String?
+  areasOfInterest         String?
+  funFacts                String?
+  passwordResetToken      String?
+  passwordResetIssuedAt   DateTime?
+  passwordResetRedeemedAt DateTime?
+  favouriteSdgs           Sdg[]        @relation("User_favouriteSdgs_many", references: [id])
+  completions             Completion[] @relation("Completionuser")
+  role                    Role?        @relation("Userrole", fields: [roleId], references: [id])
+  roleId                  Int?         @map("role")
+  from_Completion_kudos   Completion[] @relation("Completion_kudos_many", references: [id])
+  from_Idea_user          Idea[]       @relation("Ideauser")
 
   @@index([roleId])
 }
