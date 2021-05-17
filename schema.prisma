@@ -39,11 +39,12 @@ model Completion {
 }
 
 model Idea {
-  id     Int     @id @default(autoincrement())
-  title  String?
-  body   String?
-  user   User?   @relation("Ideauser", fields: [userId], references: [id])
-  userId Int?    @map("user")
+  id            Int       @id @default(autoincrement())
+  title         String?
+  body          String?
+  dateSubmitted DateTime?
+  user          User?     @relation("Ideauser", fields: [userId], references: [id])
+  userId        Int?      @map("user")
 
   @@index([userId])
 }

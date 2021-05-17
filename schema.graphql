@@ -470,6 +470,7 @@ type Idea {
   title: String
   body: String
   user: User
+  dateSubmitted: String
 }
 
 input IdeaWhereInput {
@@ -521,6 +522,14 @@ input IdeaWhereInput {
   body_not_in: [String]
   user: UserWhereInput
   user_is_null: Boolean
+  dateSubmitted: String
+  dateSubmitted_not: String
+  dateSubmitted_lt: String
+  dateSubmitted_lte: String
+  dateSubmitted_gt: String
+  dateSubmitted_gte: String
+  dateSubmitted_in: [String]
+  dateSubmitted_not_in: [String]
 }
 
 input IdeaWhereUniqueInput {
@@ -536,12 +545,15 @@ enum SortIdeasBy {
   body_DESC
   user_ASC
   user_DESC
+  dateSubmitted_ASC
+  dateSubmitted_DESC
 }
 
 input IdeaUpdateInput {
   title: String
   body: String
   user: UserRelateToOneInput
+  dateSubmitted: String
 }
 
 input IdeasUpdateInput {
@@ -553,6 +565,7 @@ input IdeaCreateInput {
   title: String
   body: String
   user: UserRelateToOneInput
+  dateSubmitted: String
 }
 
 input IdeasCreateInput {
