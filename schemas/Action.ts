@@ -14,31 +14,14 @@ const cloudinary = {
 export const Action = list({
   fields: {
     title: text(),
-    status: select({
-      options: [
-        { label: 'Published', value: 'published' },
-        { label: 'Draft', value: 'draft' },
-      ],
-      ui: {
-        displayMode: 'segmented-control',
-      },
-    }),
-    publishDate: timestamp(),
+    datePublished: timestamp({ defaultValue: () => new Date().toISOString() }),
     image: cloudinaryImage({
       cloudinary,
       label: 'Image',
     }),
     content: document({
       formatting: true,
-      layouts: [
-        [1, 1],
-        [1, 1, 1],
-        [2, 1],
-        [1, 2],
-        [1, 2, 1],
-      ],
       links: true,
-      dividers: true,
     }),
     relatedSdgs: relationship({ ref: 'Sdg.actions', many: true }),
     categories: relationship({ ref: 'Category.actions', many: true }),

@@ -72,8 +72,7 @@ input CategoryRelateToManyInput {
 type Action {
   id: ID!
   title: String
-  status: String
-  publishDate: String
+  datePublished: String
   image: CloudinaryImage_File
   content: Action_content_DocumentField
   relatedSdgs(
@@ -139,18 +138,14 @@ input ActionWhereInput {
   title_not_ends_with_i: String
   title_in: [String]
   title_not_in: [String]
-  status: String
-  status_not: String
-  status_in: [String]
-  status_not_in: [String]
-  publishDate: String
-  publishDate_not: String
-  publishDate_lt: String
-  publishDate_lte: String
-  publishDate_gt: String
-  publishDate_gte: String
-  publishDate_in: [String]
-  publishDate_not_in: [String]
+  datePublished: String
+  datePublished_not: String
+  datePublished_lt: String
+  datePublished_lte: String
+  datePublished_gt: String
+  datePublished_gte: String
+  datePublished_in: [String]
+  datePublished_not_in: [String]
   image: String
   image_not: String
   image_in: [String]
@@ -196,10 +191,8 @@ enum SortActionsBy {
   id_DESC
   title_ASC
   title_DESC
-  status_ASC
-  status_DESC
-  publishDate_ASC
-  publishDate_DESC
+  datePublished_ASC
+  datePublished_DESC
   relatedSdgs_ASC
   relatedSdgs_DESC
   categories_ASC
@@ -208,8 +201,7 @@ enum SortActionsBy {
 
 input ActionUpdateInput {
   title: String
-  status: String
-  publishDate: String
+  datePublished: String
   image: Upload
   content: JSON
   relatedSdgs: SdgRelateToManyInput
@@ -223,8 +215,7 @@ input ActionsUpdateInput {
 
 input ActionCreateInput {
   title: String
-  status: String
-  publishDate: String
+  datePublished: String
   image: Upload
   content: JSON
   relatedSdgs: SdgRelateToManyInput

@@ -11,8 +11,7 @@ generator client {
 model Action {
   id                     Int          @id @default(autoincrement())
   title                  String?
-  status                 String?
-  publishDate            DateTime?
+  datePublished          DateTime?
   image                  Json?
   content                Json?
   relatedSdgs            Sdg[]        @relation("Action_relatedSdgs_Sdg_actions", references: [id])
