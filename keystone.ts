@@ -11,7 +11,6 @@ import { Completion } from './schemas/Completion';
 import { Idea } from './schemas/Idea';
 import { Sdg } from './schemas/Sdg';
 import { User } from './schemas/User';
-import { Role } from './schemas/Role';
 import { sendPasswordResetEmail } from './lib/mail';
 
 let sessionSecret = process.env.SESSION_SECRET;
@@ -45,14 +44,7 @@ const auth = createAuth({
         This creates a related role with full permissions, so that when the first user signs in
         they have complete access to the system (without this, you couldn't do anything)
       */
-      role: {
-        create: {
-          name: 'Super Admin',
-          canEditOtherUsers: true,
-          canManageUsers: true,
-          canManageRoles: true,
-        },
-      },
+      isAdmin: true,
     },
   },
 });
@@ -78,7 +70,7 @@ export default auth.withAuth(
       adapter: 'prisma_postgresql',
       url:
         process.env.DATABASE_URL ||
-        'postgres://jonathanwu@localhost/sa4si-backend',
+        'postgres://jonathanwu@localhost/sa4si_backend',
     },
     ui: {
       // Restrict access to the Admin UI to users with the isAdmin permission
@@ -90,7 +82,6 @@ export default auth.withAuth(
       Category,
       Completion,
       Idea,
-      Role,
       Sdg,
       User,
     }),
@@ -100,13 +91,7 @@ export default auth.withAuth(
         secret: sessionSecret,
       }),
       {
-        User: `name role {
-          id
-          name
-          canEditOtherUsers
-          canManageUsers
-          canManageRoles
-        }`,
+        User: `name email isAdmin`,
       }
     ),
   })

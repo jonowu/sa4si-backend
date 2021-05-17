@@ -1,5 +1,5 @@
 import { list } from '@keystone-next/keystone/schema';
-import { text, relationship, password } from '@keystone-next/fields';
+import { text, relationship, password, checkbox } from '@keystone-next/fields';
 import { cloudinaryImage } from '@keystone-next/cloudinary';
 
 import { permissions, rules } from '../access';
@@ -16,23 +16,11 @@ export const User = list({
     create: true,
     read: true,
     update: rules.canUpdateUsers,
-    delete: permissions.canManageUsers,
+    delete: permissions.isAdmin,
   },
   ui: {
-    hideCreate: (args) => !permissions.canManageUsers(args),
-    hideDelete: (args) => !permissions.canManageUsers(args),
     listView: {
-      initialColumns: ['name', 'role'],
-    },
-    itemView: {
-      defaultFieldMode: ({ session, item }) => {
-        // Users with canEditOtherUsers can always edit Users
-        if (session.data.role?.canEditOtherUsers) return 'edit';
-        // Users can also always edit themselves
-        else if (session.itemId === item.id) return 'edit';
-        // Otherwise, default all fields to read mode
-        return 'read';
-      },
+      initialColumns: ['email', 'name', 'isAdmin'],
     },
   },
   fields: {
@@ -42,7 +30,7 @@ export const User = list({
       isRequired: true,
       access: {
         update: ({ session, item }) =>
-          permissions.canManageUsers({ session }) || session.itemId === item.id,
+          permissions.isAdmin({ session }) || session.itemId === item.id,
       },
     }),
     profilePicture: cloudinaryImage({
@@ -60,7 +48,15 @@ export const User = list({
       ref: 'Completion.user',
       many: true,
     }),
-    role: relationship({
+    // This is used for access control, both in the schema and for the Admin UI
+    isAdmin: checkbox({
+      access: {
+        // Only Admins can set the isAdmin flag for any users
+        create: permissions.isAdmin,
+        update: permissions.isAdmin,
+      },
+    }),
+    /* role: relationship({
       ref: 'Role.assignedTo',
       access: {
         create: permissions.canManageUsers,
@@ -72,6 +68,6 @@ export const User = list({
             permissions.canManageUsers(args) ? 'edit' : 'read',
         },
       },
-    }),
+    }), */
   },
 });

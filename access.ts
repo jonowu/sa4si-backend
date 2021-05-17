@@ -13,10 +13,7 @@ export const isSignedIn = ({ session }: ListAccessArgs) => {
   permission boolean set to true
 */
 export const permissions = {
-  canManageUsers: ({ session }: ListAccessArgs) =>
-    !!session?.data.role?.canManageUsers,
-  canManageRoles: ({ session }: ListAccessArgs) =>
-    !!session?.data.role?.canManageRoles,
+  isAdmin: ({ session }: ListAccessArgs) => !!session?.data.isAdmin,
 };
 
 /*
@@ -28,7 +25,7 @@ export const rules = {
     if (!session) {
       // No session? No Users.
       return false;
-    } else if (session.data.role?.canEditOtherUsers) {
+    } else if (session.data.isAdmin) {
       // Can update everyone
       return true;
     } else {

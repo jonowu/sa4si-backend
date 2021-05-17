@@ -568,129 +568,6 @@ input IdeasCreateInput {
   data: IdeaCreateInput
 }
 
-"""
- A keystone list
-"""
-type Role {
-  id: ID!
-  name: String
-  canEditOtherUsers: Boolean
-  canManageUsers: Boolean
-  canManageRoles: Boolean
-  assignedTo(
-    where: UserWhereInput
-    search: String
-    sortBy: [SortUsersBy!]
-    orderBy: String
-    first: Int
-    skip: Int
-  ): [User!]!
-  _assignedToMeta(
-    where: UserWhereInput
-    search: String
-    sortBy: [SortUsersBy!]
-    orderBy: String
-    first: Int
-    skip: Int
-  ): _QueryMeta
-}
-
-input RoleWhereInput {
-  AND: [RoleWhereInput]
-  OR: [RoleWhereInput]
-  id: ID
-  id_not: ID
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_in: [ID]
-  id_not_in: [ID]
-  name: String
-  name_not: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
-  name_i: String
-  name_not_i: String
-  name_contains_i: String
-  name_not_contains_i: String
-  name_starts_with_i: String
-  name_not_starts_with_i: String
-  name_ends_with_i: String
-  name_not_ends_with_i: String
-  name_in: [String]
-  name_not_in: [String]
-  canEditOtherUsers: Boolean
-  canEditOtherUsers_not: Boolean
-  canManageUsers: Boolean
-  canManageUsers_not: Boolean
-  canManageRoles: Boolean
-  canManageRoles_not: Boolean
-
-  """
-   condition must be true for all nodes
-  """
-  assignedTo_every: UserWhereInput
-
-  """
-   condition must be true for at least 1 node
-  """
-  assignedTo_some: UserWhereInput
-
-  """
-   condition must be false for all nodes
-  """
-  assignedTo_none: UserWhereInput
-}
-
-input RoleWhereUniqueInput {
-  id: ID!
-}
-
-enum SortRolesBy {
-  id_ASC
-  id_DESC
-  name_ASC
-  name_DESC
-  canEditOtherUsers_ASC
-  canEditOtherUsers_DESC
-  canManageUsers_ASC
-  canManageUsers_DESC
-  canManageRoles_ASC
-  canManageRoles_DESC
-  assignedTo_ASC
-  assignedTo_DESC
-}
-
-input RoleUpdateInput {
-  name: String
-  canEditOtherUsers: Boolean
-  canManageUsers: Boolean
-  canManageRoles: Boolean
-  assignedTo: UserRelateToManyInput
-}
-
-input RolesUpdateInput {
-  id: ID!
-  data: RoleUpdateInput
-}
-
-input RoleCreateInput {
-  name: String
-  canEditOtherUsers: Boolean
-  canManageUsers: Boolean
-  canManageRoles: Boolean
-  assignedTo: UserRelateToManyInput
-}
-
-input RolesCreateInput {
-  data: RoleCreateInput
-}
-
 type Sdg_content_DocumentField {
   document(hydrateRelationships: Boolean! = false): JSON!
 }
@@ -843,13 +720,6 @@ input CompletionRelateToManyInput {
   disconnectAll: Boolean
 }
 
-input RoleRelateToOneInput {
-  create: RoleCreateInput
-  connect: RoleWhereUniqueInput
-  disconnect: RoleWhereUniqueInput
-  disconnectAll: Boolean
-}
-
 """
  A keystone list
 """
@@ -894,7 +764,7 @@ type User {
     first: Int
     skip: Int
   ): _QueryMeta
-  role: Role
+  isAdmin: Boolean
   passwordResetToken_is_set: Boolean
   passwordResetIssuedAt: String
   passwordResetRedeemedAt: String
@@ -1036,8 +906,8 @@ input UserWhereInput {
    condition must be false for all nodes
   """
   completions_none: CompletionWhereInput
-  role: RoleWhereInput
-  role_is_null: Boolean
+  isAdmin: Boolean
+  isAdmin_not: Boolean
   passwordResetToken_is_set: Boolean
   passwordResetIssuedAt: String
   passwordResetIssuedAt_not: String
@@ -1078,8 +948,8 @@ enum SortUsersBy {
   favouriteSdgs_DESC
   completions_ASC
   completions_DESC
-  role_ASC
-  role_DESC
+  isAdmin_ASC
+  isAdmin_DESC
   passwordResetIssuedAt_ASC
   passwordResetIssuedAt_DESC
   passwordResetRedeemedAt_ASC
@@ -1096,7 +966,7 @@ input UserUpdateInput {
   funFacts: String
   favouriteSdgs: SdgRelateToManyInput
   completions: CompletionRelateToManyInput
-  role: RoleRelateToOneInput
+  isAdmin: Boolean
   passwordResetToken: String
   passwordResetIssuedAt: String
   passwordResetRedeemedAt: String
@@ -1117,7 +987,7 @@ input UserCreateInput {
   funFacts: String
   favouriteSdgs: SdgRelateToManyInput
   completions: CompletionRelateToManyInput
-  role: RoleRelateToOneInput
+  isAdmin: Boolean
   passwordResetToken: String
   passwordResetIssuedAt: String
   passwordResetRedeemedAt: String
@@ -1259,36 +1129,6 @@ type Mutation {
    Delete multiple Idea items by ID.
   """
   deleteIdeas(ids: [ID!]): [Idea]
-
-  """
-   Create a single Role item.
-  """
-  createRole(data: RoleCreateInput): Role
-
-  """
-   Create multiple Role items.
-  """
-  createRoles(data: [RolesCreateInput]): [Role]
-
-  """
-   Update a single Role item by ID.
-  """
-  updateRole(id: ID!, data: RoleUpdateInput): Role
-
-  """
-   Update multiple Role items by ID.
-  """
-  updateRoles(data: [RolesUpdateInput]): [Role]
-
-  """
-   Delete a single Role item by ID.
-  """
-  deleteRole(id: ID!): Role
-
-  """
-   Delete multiple Role items by ID.
-  """
-  deleteRoles(ids: [ID!]): [Role]
 
   """
    Create a single Sdg item.
@@ -1542,35 +1382,6 @@ type Query {
     where: IdeaWhereInput
     search: String
     sortBy: [SortIdeasBy!]
-    orderBy: String
-    first: Int
-    skip: Int
-  ): _QueryMeta
-
-  """
-   Search for all Role items which match the where clause.
-  """
-  allRoles(
-    where: RoleWhereInput
-    search: String
-    sortBy: [SortRolesBy!]
-    orderBy: String
-    first: Int
-    skip: Int
-  ): [Role]
-
-  """
-   Search for the Role item with the matching ID.
-  """
-  Role(where: RoleWhereUniqueInput!): Role
-
-  """
-   Perform a meta-query on all Role items which match the where clause.
-  """
-  _allRolesMeta(
-    where: RoleWhereInput
-    search: String
-    sortBy: [SortRolesBy!]
     orderBy: String
     first: Int
     skip: Int

@@ -49,15 +49,6 @@ model Idea {
   @@index([userId])
 }
 
-model Role {
-  id                Int      @id @default(autoincrement())
-  name              String?
-  canEditOtherUsers Boolean?
-  canManageUsers    Boolean?
-  canManageRoles    Boolean?
-  assignedTo        User[]   @relation("Userrole")
-}
-
 model Sdg {
   id                      Int      @id @default(autoincrement())
   sdgNo                   Int?
@@ -77,15 +68,12 @@ model User {
   biography               String?
   areasOfInterest         String?
   funFacts                String?
+  isAdmin                 Boolean?
   passwordResetToken      String?
   passwordResetIssuedAt   DateTime?
   passwordResetRedeemedAt DateTime?
   favouriteSdgs           Sdg[]        @relation("User_favouriteSdgs_many", references: [id])
   completions             Completion[] @relation("Completionuser")
-  role                    Role?        @relation("Userrole", fields: [roleId], references: [id])
-  roleId                  Int?         @map("role")
   from_Completion_kudos   Completion[] @relation("Completion_kudos_many", references: [id])
   from_Idea_user          Idea[]       @relation("Ideauser")
-
-  @@index([roleId])
 }

@@ -3,6 +3,7 @@ export type Session = {
   listKey: string;
   data: {
     name: string;
+    isAdmin: boolean;
     role?: {
       id: string;
       name: string;
