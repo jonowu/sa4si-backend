@@ -60,7 +60,8 @@ export default auth.withAuth(
         origin: [
           'http://localhost:3000',
           'http://localhost:19006',
-          'https://sa4si-web.vercel.app',
+          'https://sa4si.vercel.app',
+          'https://sa4si-reset-password.vercel.app',
           'https://sa4si-app-reset-password.vercel.app',
         ],
         credentials: true,
