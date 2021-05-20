@@ -91,6 +91,7 @@ export default auth.withAuth(
       statelessSessions({
         maxAge: sessionMaxAge,
         secret: sessionSecret,
+        secure: false,
       }),
       {
         User: `name email isAdmin`,

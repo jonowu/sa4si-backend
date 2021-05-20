@@ -4,13 +4,6 @@ export type Session = {
   data: {
     name: string;
     isAdmin: boolean;
-    role?: {
-      id: string;
-      name: string;
-      canEditOtherUsers: boolean;
-      canManageUsers: boolean;
-      canManageRoles: boolean;
-    };
   };
 };
 
