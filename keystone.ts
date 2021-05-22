@@ -92,6 +92,7 @@ export default auth.withAuth(
         maxAge: sessionMaxAge,
         secret: sessionSecret,
         secure: false,
+        domain: process.env.DOMAIN,
       }),
       {
         User: `name email isAdmin`,
