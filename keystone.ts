@@ -15,6 +15,7 @@ import { sendPasswordResetEmail } from './lib/mail';
 import { extendGraphqlSchema } from './mutations';
 
 let sessionSecret = process.env.SESSION_SECRET;
+const domain = process.env.DOMAIN;
 
 if (!sessionSecret) {
   if (process.env.NODE_ENV === 'production') {
@@ -92,7 +93,7 @@ export default auth.withAuth(
         maxAge: sessionMaxAge,
         secret: sessionSecret,
         secure: false,
-        domain: process.env.DOMAIN,
+        domain: domain,
       }),
       {
         User: `name email isAdmin`,
