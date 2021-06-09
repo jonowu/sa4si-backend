@@ -89,8 +89,8 @@ export default auth.withAuth(
     session: statelessSessions({
       maxAge: sessionMaxAge,
       secret: sessionSecret,
-      secure: false,
       domain: domain,
+      secure: true,
       sameSite: 'none',
     }),
     extendGraphqlSchema,
