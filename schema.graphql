@@ -76,42 +76,54 @@ type Action {
   image: CloudinaryImage_File
   content: Action_content_DocumentField
   relatedSdgs(
-    where: SdgWhereInput
+    where: SdgWhereInput! = {}
     search: String
     sortBy: [SortSdgsBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [SdgOrderByInput!]! = []
     first: Int
-    skip: Int
+    skip: Int! = 0
   ): [Sdg!]!
   _relatedSdgsMeta(
-    where: SdgWhereInput
+    where: SdgWhereInput! = {}
     search: String
     sortBy: [SortSdgsBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [SdgOrderByInput!]! = []
     first: Int
-    skip: Int
+    skip: Int! = 0
   ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use relatedSdgsCount instead."
+    )
+  relatedSdgsCount(where: SdgWhereInput! = {}): Int
   categories(
-    where: CategoryWhereInput
+    where: CategoryWhereInput! = {}
     search: String
     sortBy: [SortCategoriesBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [CategoryOrderByInput!]! = []
     first: Int
-    skip: Int
+    skip: Int! = 0
   ): [Category!]!
   _categoriesMeta(
-    where: CategoryWhereInput
+    where: CategoryWhereInput! = {}
     search: String
     sortBy: [SortCategoriesBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [CategoryOrderByInput!]! = []
     first: Int
-    skip: Int
+    skip: Int! = 0
   ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use categoriesCount instead."
+    )
+  categoriesCount(where: CategoryWhereInput! = {}): Int
 }
 
 input ActionWhereInput {
-  AND: [ActionWhereInput]
-  OR: [ActionWhereInput]
+  AND: [ActionWhereInput!]
+  OR: [ActionWhereInput!]
   id: ID
   id_not: ID
   id_lt: ID
@@ -193,10 +205,17 @@ enum SortActionsBy {
   title_DESC
   datePublished_ASC
   datePublished_DESC
-  relatedSdgs_ASC
-  relatedSdgs_DESC
-  categories_ASC
-  categories_DESC
+}
+
+input ActionOrderByInput {
+  id: OrderDirection
+  title: OrderDirection
+  datePublished: OrderDirection
+}
+
+enum OrderDirection {
+  asc
+  desc
 }
 
 input ActionUpdateInput {
@@ -240,26 +259,32 @@ type Category {
   id: ID!
   title: String
   actions(
-    where: ActionWhereInput
+    where: ActionWhereInput! = {}
     search: String
     sortBy: [SortActionsBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [ActionOrderByInput!]! = []
     first: Int
-    skip: Int
+    skip: Int! = 0
   ): [Action!]!
   _actionsMeta(
-    where: ActionWhereInput
+    where: ActionWhereInput! = {}
     search: String
     sortBy: [SortActionsBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [ActionOrderByInput!]! = []
     first: Int
-    skip: Int
+    skip: Int! = 0
   ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use actionsCount instead."
+    )
+  actionsCount(where: ActionWhereInput! = {}): Int
 }
 
 input CategoryWhereInput {
-  AND: [CategoryWhereInput]
-  OR: [CategoryWhereInput]
+  AND: [CategoryWhereInput!]
+  OR: [CategoryWhereInput!]
   id: ID
   id_not: ID
   id_lt: ID
@@ -312,8 +337,11 @@ enum SortCategoriesBy {
   id_DESC
   title_ASC
   title_DESC
-  actions_ASC
-  actions_DESC
+}
+
+input CategoryOrderByInput {
+  id: OrderDirection
+  title: OrderDirection
 }
 
 input CategoryUpdateInput {
@@ -365,26 +393,32 @@ type Completion {
   user: User
   completionDate: String
   kudos(
-    where: UserWhereInput
+    where: UserWhereInput! = {}
     search: String
     sortBy: [SortUsersBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [UserOrderByInput!]! = []
     first: Int
-    skip: Int
+    skip: Int! = 0
   ): [User!]!
   _kudosMeta(
-    where: UserWhereInput
+    where: UserWhereInput! = {}
     search: String
     sortBy: [SortUsersBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [UserOrderByInput!]! = []
     first: Int
-    skip: Int
+    skip: Int! = 0
   ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use kudosCount instead."
+    )
+  kudosCount(where: UserWhereInput! = {}): Int
 }
 
 input CompletionWhereInput {
-  AND: [CompletionWhereInput]
-  OR: [CompletionWhereInput]
+  AND: [CompletionWhereInput!]
+  OR: [CompletionWhereInput!]
   id: ID
   id_not: ID
   id_lt: ID
@@ -429,14 +463,13 @@ input CompletionWhereUniqueInput {
 enum SortCompletionsBy {
   id_ASC
   id_DESC
-  action_ASC
-  action_DESC
-  user_ASC
-  user_DESC
   completionDate_ASC
   completionDate_DESC
-  kudos_ASC
-  kudos_DESC
+}
+
+input CompletionOrderByInput {
+  id: OrderDirection
+  completionDate: OrderDirection
 }
 
 input CompletionUpdateInput {
@@ -474,8 +507,8 @@ type Idea {
 }
 
 input IdeaWhereInput {
-  AND: [IdeaWhereInput]
-  OR: [IdeaWhereInput]
+  AND: [IdeaWhereInput!]
+  OR: [IdeaWhereInput!]
   id: ID
   id_not: ID
   id_lt: ID
@@ -543,10 +576,15 @@ enum SortIdeasBy {
   title_DESC
   body_ASC
   body_DESC
-  user_ASC
-  user_DESC
   dateSubmitted_ASC
   dateSubmitted_DESC
+}
+
+input IdeaOrderByInput {
+  id: OrderDirection
+  title: OrderDirection
+  body: OrderDirection
+  dateSubmitted: OrderDirection
 }
 
 input IdeaUpdateInput {
@@ -586,26 +624,32 @@ type Sdg {
   description: String
   content: Sdg_content_DocumentField
   actions(
-    where: ActionWhereInput
+    where: ActionWhereInput! = {}
     search: String
     sortBy: [SortActionsBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [ActionOrderByInput!]! = []
     first: Int
-    skip: Int
+    skip: Int! = 0
   ): [Action!]!
   _actionsMeta(
-    where: ActionWhereInput
+    where: ActionWhereInput! = {}
     search: String
     sortBy: [SortActionsBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [ActionOrderByInput!]! = []
     first: Int
-    skip: Int
+    skip: Int! = 0
   ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use actionsCount instead."
+    )
+  actionsCount(where: ActionWhereInput! = {}): Int
 }
 
 input SdgWhereInput {
-  AND: [SdgWhereInput]
-  OR: [SdgWhereInput]
+  AND: [SdgWhereInput!]
+  OR: [SdgWhereInput!]
   id: ID
   id_not: ID
   id_lt: ID
@@ -688,8 +732,13 @@ enum SortSdgsBy {
   title_DESC
   description_ASC
   description_DESC
-  actions_ASC
-  actions_DESC
+}
+
+input SdgOrderByInput {
+  id: OrderDirection
+  sdgNo: OrderDirection
+  title: OrderDirection
+  description: OrderDirection
 }
 
 input SdgUpdateInput {
@@ -737,37 +786,49 @@ type User {
   areasOfInterest: String
   funFacts: String
   favouriteSdgs(
-    where: SdgWhereInput
+    where: SdgWhereInput! = {}
     search: String
     sortBy: [SortSdgsBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [SdgOrderByInput!]! = []
     first: Int
-    skip: Int
+    skip: Int! = 0
   ): [Sdg!]!
   _favouriteSdgsMeta(
-    where: SdgWhereInput
+    where: SdgWhereInput! = {}
     search: String
     sortBy: [SortSdgsBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [SdgOrderByInput!]! = []
     first: Int
-    skip: Int
+    skip: Int! = 0
   ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use favouriteSdgsCount instead."
+    )
+  favouriteSdgsCount(where: SdgWhereInput! = {}): Int
   completions(
-    where: CompletionWhereInput
+    where: CompletionWhereInput! = {}
     search: String
     sortBy: [SortCompletionsBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [CompletionOrderByInput!]! = []
     first: Int
-    skip: Int
+    skip: Int! = 0
   ): [Completion!]!
   _completionsMeta(
-    where: CompletionWhereInput
+    where: CompletionWhereInput! = {}
     search: String
     sortBy: [SortCompletionsBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [CompletionOrderByInput!]! = []
     first: Int
-    skip: Int
+    skip: Int! = 0
   ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use completionsCount instead."
+    )
+  completionsCount(where: CompletionWhereInput! = {}): Int
   isAdmin: Boolean
   passwordResetToken_is_set: Boolean
   passwordResetIssuedAt: String
@@ -775,8 +836,8 @@ type User {
 }
 
 input UserWhereInput {
-  AND: [UserWhereInput]
-  OR: [UserWhereInput]
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
   id: ID
   id_not: ID
   id_lt: ID
@@ -948,16 +1009,24 @@ enum SortUsersBy {
   areasOfInterest_DESC
   funFacts_ASC
   funFacts_DESC
-  favouriteSdgs_ASC
-  favouriteSdgs_DESC
-  completions_ASC
-  completions_DESC
   isAdmin_ASC
   isAdmin_DESC
   passwordResetIssuedAt_ASC
   passwordResetIssuedAt_DESC
   passwordResetRedeemedAt_ASC
   passwordResetRedeemedAt_DESC
+}
+
+input UserOrderByInput {
+  id: OrderDirection
+  name: OrderDirection
+  email: OrderDirection
+  biography: OrderDirection
+  areasOfInterest: OrderDirection
+  funFacts: OrderDirection
+  isAdmin: OrderDirection
+  passwordResetIssuedAt: OrderDirection
+  passwordResetRedeemedAt: OrderDirection
 }
 
 input UserUpdateInput {
@@ -1280,13 +1349,14 @@ type Query {
    Search for all Action items which match the where clause.
   """
   allActions(
-    where: ActionWhereInput
+    where: ActionWhereInput! = {}
     search: String
     sortBy: [SortActionsBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [ActionOrderByInput!]! = []
     first: Int
-    skip: Int
-  ): [Action]
+    skip: Int! = 0
+  ): [Action!]
 
   """
    Search for the Action item with the matching ID.
@@ -1297,25 +1367,31 @@ type Query {
    Perform a meta-query on all Action items which match the where clause.
   """
   _allActionsMeta(
-    where: ActionWhereInput
+    where: ActionWhereInput! = {}
     search: String
     sortBy: [SortActionsBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [ActionOrderByInput!]! = []
     first: Int
-    skip: Int
+    skip: Int! = 0
   ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use actionsCount instead."
+    )
+  actionsCount(where: ActionWhereInput! = {}): Int
 
   """
    Search for all Category items which match the where clause.
   """
   allCategories(
-    where: CategoryWhereInput
+    where: CategoryWhereInput! = {}
     search: String
     sortBy: [SortCategoriesBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [CategoryOrderByInput!]! = []
     first: Int
-    skip: Int
-  ): [Category]
+    skip: Int! = 0
+  ): [Category!]
 
   """
    Search for the Category item with the matching ID.
@@ -1326,25 +1402,31 @@ type Query {
    Perform a meta-query on all Category items which match the where clause.
   """
   _allCategoriesMeta(
-    where: CategoryWhereInput
+    where: CategoryWhereInput! = {}
     search: String
     sortBy: [SortCategoriesBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [CategoryOrderByInput!]! = []
     first: Int
-    skip: Int
+    skip: Int! = 0
   ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use categoriesCount instead."
+    )
+  categoriesCount(where: CategoryWhereInput! = {}): Int
 
   """
    Search for all Completion items which match the where clause.
   """
   allCompletions(
-    where: CompletionWhereInput
+    where: CompletionWhereInput! = {}
     search: String
     sortBy: [SortCompletionsBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [CompletionOrderByInput!]! = []
     first: Int
-    skip: Int
-  ): [Completion]
+    skip: Int! = 0
+  ): [Completion!]
 
   """
    Search for the Completion item with the matching ID.
@@ -1355,25 +1437,31 @@ type Query {
    Perform a meta-query on all Completion items which match the where clause.
   """
   _allCompletionsMeta(
-    where: CompletionWhereInput
+    where: CompletionWhereInput! = {}
     search: String
     sortBy: [SortCompletionsBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [CompletionOrderByInput!]! = []
     first: Int
-    skip: Int
+    skip: Int! = 0
   ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use completionsCount instead."
+    )
+  completionsCount(where: CompletionWhereInput! = {}): Int
 
   """
    Search for all Idea items which match the where clause.
   """
   allIdeas(
-    where: IdeaWhereInput
+    where: IdeaWhereInput! = {}
     search: String
     sortBy: [SortIdeasBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [IdeaOrderByInput!]! = []
     first: Int
-    skip: Int
-  ): [Idea]
+    skip: Int! = 0
+  ): [Idea!]
 
   """
    Search for the Idea item with the matching ID.
@@ -1384,25 +1472,31 @@ type Query {
    Perform a meta-query on all Idea items which match the where clause.
   """
   _allIdeasMeta(
-    where: IdeaWhereInput
+    where: IdeaWhereInput! = {}
     search: String
     sortBy: [SortIdeasBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [IdeaOrderByInput!]! = []
     first: Int
-    skip: Int
+    skip: Int! = 0
   ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use ideasCount instead."
+    )
+  ideasCount(where: IdeaWhereInput! = {}): Int
 
   """
    Search for all Sdg items which match the where clause.
   """
   allSdgs(
-    where: SdgWhereInput
+    where: SdgWhereInput! = {}
     search: String
     sortBy: [SortSdgsBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [SdgOrderByInput!]! = []
     first: Int
-    skip: Int
-  ): [Sdg]
+    skip: Int! = 0
+  ): [Sdg!]
 
   """
    Search for the Sdg item with the matching ID.
@@ -1413,25 +1507,31 @@ type Query {
    Perform a meta-query on all Sdg items which match the where clause.
   """
   _allSdgsMeta(
-    where: SdgWhereInput
+    where: SdgWhereInput! = {}
     search: String
     sortBy: [SortSdgsBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [SdgOrderByInput!]! = []
     first: Int
-    skip: Int
+    skip: Int! = 0
   ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use sdgsCount instead."
+    )
+  sdgsCount(where: SdgWhereInput! = {}): Int
 
   """
    Search for all User items which match the where clause.
   """
   allUsers(
-    where: UserWhereInput
+    where: UserWhereInput! = {}
     search: String
     sortBy: [SortUsersBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [UserOrderByInput!]! = []
     first: Int
-    skip: Int
-  ): [User]
+    skip: Int! = 0
+  ): [User!]
 
   """
    Search for the User item with the matching ID.
@@ -1442,13 +1542,18 @@ type Query {
    Perform a meta-query on all User items which match the where clause.
   """
   _allUsersMeta(
-    where: UserWhereInput
+    where: UserWhereInput! = {}
     search: String
     sortBy: [SortUsersBy!]
-    orderBy: String
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [UserOrderByInput!]! = []
     first: Int
-    skip: Int
+    skip: Int! = 0
   ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use usersCount instead."
+    )
+  usersCount(where: UserWhereInput! = {}): Int
   authenticatedItem: AuthenticatedItem
   validateUserPasswordResetToken(
     email: String!

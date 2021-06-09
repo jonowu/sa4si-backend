@@ -1,8 +1,5 @@
 import { createSchema, config } from '@keystone-next/keystone/schema';
-import {
-  statelessSessions,
-  withItemData,
-} from '@keystone-next/keystone/session';
+import { statelessSessions } from '@keystone-next/keystone/session';
 import { createAuth } from '@keystone-next/auth';
 
 import { Action } from './schemas/Action';
@@ -33,6 +30,7 @@ const auth = createAuth({
   listKey: 'User',
   identityField: 'email',
   secretField: 'password',
+  sessionData: 'name email isAdmin',
   passwordResetLink: {
     async sendToken(args) {
       // send the email
@@ -88,17 +86,12 @@ export default auth.withAuth(
       Sdg,
       User,
     }),
-    session: withItemData(
-      statelessSessions({
-        maxAge: sessionMaxAge,
-        secret: sessionSecret,
-        secure: false,
-        domain: domain,
-      }),
-      {
-        User: `name email isAdmin`,
-      }
-    ),
+    session: statelessSessions({
+      maxAge: sessionMaxAge,
+      secret: sessionSecret,
+      secure: false,
+      domain: domain,
+    }),
     extendGraphqlSchema,
   })
 );
