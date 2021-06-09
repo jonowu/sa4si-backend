@@ -91,7 +91,7 @@ export default auth.withAuth(
       secret: sessionSecret,
       secure: false,
       domain: domain,
-      sameSite: false,
+      sameSite: 'none',
     }),
     extendGraphqlSchema,
   })
