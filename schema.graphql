@@ -1344,6 +1344,11 @@ enum PasswordResetRedemptionErrorCode {
   TOKEN_REDEEMED
 }
 
+type LeaderboardItem {
+  user: User
+  position: Int
+}
+
 type Query {
   """
    Search for all Action items which match the where clause.
@@ -1559,6 +1564,7 @@ type Query {
     email: String!
     token: String!
   ): ValidateUserPasswordResetTokenResult
+  leaderboard(userId: ID): [LeaderboardItem]
   keystone: KeystoneMeta!
 }
 

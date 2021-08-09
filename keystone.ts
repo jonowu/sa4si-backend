@@ -9,7 +9,7 @@ import { Idea } from './schemas/Idea';
 import { Sdg } from './schemas/Sdg';
 import { User } from './schemas/User';
 import { sendPasswordResetEmail } from './lib/mail';
-import { extendGraphqlSchema } from './mutations';
+import { extendGraphqlSchema } from './extensions';
 
 let sessionSecret = process.env.SESSION_SECRET;
 const domain = process.env.DOMAIN;
