@@ -90,8 +90,8 @@ export default auth.withAuth(
       maxAge: sessionMaxAge,
       secret: sessionSecret,
       domain: domain,
-      secure: true,
-      sameSite: 'none',
+      // secure: true,
+      // sameSite: 'none',
     }),
     extendGraphqlSchema,
   })
