@@ -1347,6 +1347,7 @@ enum PasswordResetRedemptionErrorCode {
 type LeaderboardItem {
   user: User
   position: Int
+  completions: Int
 }
 
 type Query {

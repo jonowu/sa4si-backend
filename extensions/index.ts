@@ -9,6 +9,7 @@ export const extendGraphqlSchema = graphQLSchemaExtension({
     type LeaderboardItem {
       user: User
       position: Int
+      completions: Int
     }
     type Query {
       leaderboard(userId: ID): [LeaderboardItem]
