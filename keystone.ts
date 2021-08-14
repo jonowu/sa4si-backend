@@ -10,6 +10,7 @@ import { Sdg } from './schemas/Sdg';
 import { User } from './schemas/User';
 import { sendPasswordResetEmail } from './lib/mail';
 import { extendGraphqlSchema } from './extensions';
+import { permissions } from './access';
 
 let sessionSecret = process.env.SESSION_SECRET;
 const domain = process.env.DOMAIN;
@@ -75,7 +76,7 @@ export default auth.withAuth(
     },
     ui: {
       // Restrict access to the Admin UI to users with the isAdmin permission
-      // isAccessAllowed: (context) => (isAdmin(context) ? true : false),
+      isAccessAllowed: (context) => permissions.isAdmin(context),
     },
     lists: createSchema({
       // Schema items go in here
