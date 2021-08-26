@@ -63,6 +63,8 @@ export default auth.withAuth(
           'https://sa4si.vercel.app',
           'https://sa4si-reset-password.vercel.app',
           'https://sa4si-app-reset-password.vercel.app',
+          'https://sa4si-app-2tiqw.ondigitalocean.app',
+          'https://www.sa4si.org/',
         ],
         credentials: true,
       },
